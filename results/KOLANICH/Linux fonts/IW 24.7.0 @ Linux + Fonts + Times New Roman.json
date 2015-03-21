@@ -1,0 +1,25 @@
+{
+	"Times New Roman" : "1cc93820b8a55ba096c49210",
+	"Arial" : "8ec0dbf49590e3e36e791c9f",
+	"Impact" : "40da74b4288fb7b08c0b4524",
+	"Courier New" : "185eefbb77239792247a60d7",
+	"Bookman Old Style" : "ad3239f54fd2492e7291d443",
+	"Consolas" : "e8770d7d209f02e63145cfa1",
+	"MS Gothic" : "daaef28a5eb5ebc1f252dd98",
+	"Constantia" : "b2f3cf465c7768970c5adaf1",
+	"Calibri" : "d0a95ea4d0591a0846d34fdd",
+	"Cambria" : "7c0669341bdc1a24186506c8",
+	"Wingdings" : "20966ffc0d83cbf58f33258a",
+	"Webdings" : "56e98312e05137ecca9593a1",
+	"Symbol" : "a8b34f82e4198cda66833cba",
+	"Droid Sans" : "aae7141159203f7a7a8ce672",
+	"DejaVu Sans" : "4004c179a3fdecb0e3bdd120",
+	"serif" : {
+		"d" : "583e14d3bd28a2a66f7d8eda",
+		"fonts" : ["Ubuntu Mono", "Inconsolata", "Inconsolata LGC", "Source Code Pro", "Lucida Handwriting", "Georgia", "System", "vgaoem"]
+	},
+	"sans-serif" : {
+		"d" : "7b9af04baaf04d2492fb7b23",
+		"fonts" : []
+	}
+}

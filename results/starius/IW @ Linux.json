@@ -1,0 +1,19 @@
+{
+	"Times New Roman" : "c2c91d5b3c4fecd9109afe0e",
+	"Arial" : "4917211a76ddf69db033e125",
+	"Courier New" : "eb211de3b75234ea90a50c3f",
+	"Symbol" : "709ab9f882b1808b323e7d09",
+	"Droid Sans" : "fbc25f5e038a28b94454fa13",
+	"DejaVu Sans" : "c0bf2bce71e4313758d1aba8",
+	"serif" : {
+		"d" : "5daa940a38e3b137916aadcb",
+		"fonts" : ["Impact", "Bookman Old Style", "Consolas",
+			"MS Gothic", "Constantia", "Calibri", "Cambria", "Wingdings",
+			"Webdings", "Ubuntu Mono", "Inconsolata", "Inconsolata LGC",
+			"Source Code Pro", "Lucida Handwriting", "Georgia", "System", "vgaoem"]
+	},
+	"sans-serif" : {
+		"d" : "46a9a2d351881662502ed793",
+		"fonts" : []
+	}
+}

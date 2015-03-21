@@ -1,0 +1,12 @@
+{
+	"DejaVu Sans" : "4fd7fb4babfa17ccd9755508",
+	"serif" : {
+		"d" : "6d0bcd365a1eaade9320ed12",
+		"fonts" : ["Times New Roman", "Arial", "Impact";
+			"Courier New", "Bookman Old Style", "Consolas", "MS Gothic", "Constantia", "Calibri", "Cambria", "Wingdings", "Webdings", "Symbol", "Ubuntu Mono", "Droid Sans", "Inconsolata", "Inconsolata LGC", "Source Code Pro", "Lucida Handwriting", "Georgia", "System", "vgaoem"]
+	},
+	"sans-serif" : {
+		"d" : "3a84298716a4bca4cb4f4d0f",
+		"fonts" : []
+	}
+}

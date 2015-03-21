@@ -1,0 +1,23 @@
+{
+    "Impact" : "2e32f50e863bc9a085666248",
+    "Courier New" : "aff48e3be26cc0dc507cff3c",
+    "Bookman Old Style" : "6e1b8cc3a60c648c763ccb43",
+    "Consolas" : "156930f3a699c3d4744de1b5",
+    "MS Gothic" : "4d3972114ab839313eb6b86f",
+    "Constantia" : "b22efe989907bbb968cd028d",
+    "Calibri" : "abb1c5868a80896c0c65ee13",
+    "Cambria" : "f364822f7f8f4fd170f2e1e0",
+    "Wingdings" : "66e3a81068bbba59e439235e",
+    "Webdings" : "c22c781324f8365781b359e6",
+    "Symbol" : "7073f323f33a6861b2368641",
+    "Lucida Handwriting" : "7953cc9b88bac85bb5637189",
+    "Georgia" : "8046fa72d901874f1d44c4f5",
+    "serif" : {
+        "d" : "4e9edc58576ac6e25485aeda",
+        "fonts" : ["Times New Roman", "Ubuntu Mono", "Droid Sans", "DejaVu Sans", "Inconsolata", "Inconsolata LGC", "Source Code Pro", "System", "vgaoem"]
+    },
+    "sans-serif" : {
+        "d" : "0c5aeb3d64c4564e6cfe613f",
+        "fonts" : ["Arial"]
+    }
+} 
