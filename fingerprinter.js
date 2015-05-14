@@ -80,8 +80,9 @@
 			}catch(e){}
 		};
 	}
-	function clear(){
+	function clear(nm){
 		try{
+			//delete sessionStorage[nm];
 			sessionStorage.clear();
 		}catch(e){}
 		document.cookie = nm + "=;";
@@ -152,7 +153,7 @@
 			downlink.download="fingerprint.json";
 			downlink.textContent="Download fingerprint";
 			resultBox.parentElement.appendChild(downlink);
-			clear();
+			clear(storageVarName);
 			return;
 		}
 		tprb.value = res.it / countOfIts;
