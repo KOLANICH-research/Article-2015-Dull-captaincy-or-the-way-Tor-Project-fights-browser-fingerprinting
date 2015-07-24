@@ -78,6 +78,8 @@ There are other APIs, leaking information, which are (certainly!) not protected.
 
 You can contribute, to do it you need to clone\footnote{\lstinline!git clone https://github.com/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting.git!} \href{https://github.com/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting}{the repo}, download and run the latest (or any other) \href{https://www.torproject.org/download/download.html.en}{TBB}\footnote{Tor Browser Bundle, a set of programs for anonymous web surfing}, open the HTML file from the repo, and \textbf{to post your result as a comment or pull request}. Also, you can visit \href{http://jsfiddle.net/fyw4qmdg/5/}{a fiddle} or a \href{http://fiddle.jshell.net/fyw4qmdg/5/show/}{full-window fiddle}. Of course, we could not use hashes, this would have given ad more possibilities to mine the data, but even a compressed set of information about every font takes a lot of storage. It is not an issue for storage-enabled browsers, but is if we have to use cookies\footnote{a technology allowing to save small amounts (4097 bytes in most of browsers) of data which will be sent to server on any http request} instead. That's why we use \href{https://en.wikipedia.org/wiki/BLAKE_%28hash_function%29}{Blake2} hashes. \href{https://github.com/dchest/blake2s-js}{The implementation used} is by dchest.
 
+Should be noted that some time after release of this paper I have found the study\cite{Fifield2015} with analysis of entropy of fonts and characters acquired in the method similar to the one used this study.
+
 \section{The results}\label{the-results}
 
 \subsection{Different browsers}\label{different-browsers}
@@ -271,6 +273,8 @@ One of solutions is to use the same cache for all the sites, which is dropped in
   Added the links to the articles and ``In The Wild'' chapter
 \item
    \LaTeX\ English version. Text fixes. Separate folder with results.
+\item
+   Discovered the paper\cite{Fifield2015} on the same topic with analysis of entropy of characters and fonts.
 \end{enumerate}
 
 
