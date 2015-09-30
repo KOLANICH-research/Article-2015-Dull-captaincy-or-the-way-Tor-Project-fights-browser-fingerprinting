@@ -17,9 +17,10 @@
 		"Calibri", "Cambria", //office
 		"Wingdings", "Webdings", "Symbol", //symbol
 		"Ubuntu Mono", "Droid Sans", "DejaVu Sans", //linux
-		"Inconsolata", "Inconsolata LGC", "Source Code Pro", //coders'
+		"Inconsolata", "Inconsolata LGC", "Source Code Pro", "Hack", //coders'
 		"Lucida Handwriting", //Bigelow & Holmes
 		"Georgia", //Carter & Cone
+		"San Francisco", //Apple
 		"System", "vgaoem"
 	];
 	let alphabetLength = alphabet.map(function (a) {
@@ -112,6 +113,7 @@
 		d.style.position = "fixed";
 		d.style.left = d.style.top = "0px";
 		d.style.zIndex = -1000;
+		d.style.visibility = "hidden";
 		document.body.appendChild(d);
 
 		let fonts = defFonts;
@@ -128,6 +130,7 @@
 
 		fonts = fonts.filter((f) => typeof res.fonts[f] == "undefined");
 		let resultBox = document.getElementById("res");
+		let resultPre = document.getElementById("resPre");
 
 		if (res.it == countOfIts) {
 			res.fonts["serif"] = {
@@ -145,13 +148,20 @@
 				else
 					res.fonts["sans-serif"].fonts.push(f);
 			}
-
-			resultBox.innerHTML = JSON.stringify(res.fonts)
-				 + "<br/>Milliseconds per font: " + res.fontFingerprintingTotalTime / (fonts.length * countOfIts);
+			let resText = JSON.stringify(res.fonts, null, "\t");
+			resultPre.innerHTML = resText;
+			resultBox.innerHTML += "<br/>Milliseconds per font: " + res.fontFingerprintingTotalTime / (fonts.length * countOfIts);
 			let downlink=document.createElement("A");
-			downlink.href=URL.createObjectURL(new Blob(["aaaa"],{type:"application/json"}));
 			downlink.download="fingerprint.json";
 			downlink.textContent="Download fingerprint";
+			{
+				const mime="application/json";
+				try{
+					downlink.href=URL.createObjectURL(new Blob([resText],{type:mime}));
+				}catch(ex){
+					downlink.href="data:"+mime+","+encodeURIComponent(resText);
+				}
+			}
 			resultBox.parentElement.appendChild(downlink);
 			clear(storageVarName);
 			return;
@@ -202,10 +212,8 @@
 		}
 
 		res.it++;
-		let serialisedResult = JSON.stringify(res);
-		resultBox.innerHTML = serialisedResult;
-		
-		save(storageVarName,serialisedResult);
+		resultPre.innerHTML = JSON.stringify(res, null, "\t");
+		save(storageVarName,JSON.stringify(res));
 		window.location.reload();
 	}
 	document.addEventListener("DOMContentLoaded", doFingerprinting, false);
