@@ -1,0 +1,36 @@
+{
+	"serif" : {
+		"d" : "Cd56b1db51b0f97f5d4ca8c7",
+		"fonts" : []
+	},
+	"sans-serif" : {
+		"d" : "1c1000198a64ffe128f7bea9",
+		"fonts" : [
+			"Times New Roman",
+			"Arial",
+			"Impact",
+			"Courier New",
+			"Bookman Old Style",
+			"Consolas",
+			"MS Gothic",
+			"Constantia",
+			"Calibri",
+			"Cambria",
+			"Wingdings",
+			"Webdings",
+			"Symbol",
+			"Ubuntu Mono",
+			"Droid Sans",
+			"Dejavu Sans",
+			"Inconsolata",
+			"Inconsolata LGC",
+			"Source Code Pro",
+			"Hack",
+			"Lucida Handwriting",
+			"Georgia",
+			"San Francisco",
+			"System",
+			"vgaoem"
+		]
+	}
+}

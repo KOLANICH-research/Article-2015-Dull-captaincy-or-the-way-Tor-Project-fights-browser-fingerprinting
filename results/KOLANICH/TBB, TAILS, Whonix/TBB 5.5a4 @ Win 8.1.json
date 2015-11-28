@@ -1,0 +1,37 @@
+{
+	"Courier New": "2fe7d54fb374c0cc38262d9b",
+	"MS Gothic": "206e1daede958cda76aa8526",
+	"Georgia": "64c8f3636dafa80f56633e1f",
+	"serif": {
+		"d": "1591c22f5551c35231162f4a",
+		"fonts": [
+			"Times New Roman",
+			"Impact",
+			"Bookman Old Style",
+			"Consolas",
+			"Constantia",
+			"Calibri",
+			"Cambria",
+			"Wingdings",
+			"Webdings",
+			"Symbol",
+			"Ubuntu Mono",
+			"Droid Sans",
+			"DejaVu Sans",
+			"Inconsolata",
+			"Inconsolata LGC",
+			"Source Code Pro",
+			"Hack",
+			"Lucida Handwriting",
+			"San Francisco",
+			"System",
+			"vgaoem"
+		]
+	},
+	"sans-serif": {
+		"d": "7f7c48c7f03d48bf6bf68e45",
+		"fonts": [
+			"Arial"
+		]
+	}
+}

@@ -199,6 +199,8 @@ Some offtop: during the study I have found that a large fraction of fonts contai
 
 After I have published this article (in Russian) a \href{https://trac.torproject.org/projects/tor/query?reporter=gk}{user gk from  Tor Project's bug tracker} \href{https://trac.torproject.org/projects/tor/ticket/14310\#comment:3}{advised me an interesting article} \cite{Nikiforakis2014}. The article has meant some tracking scripts, at least \href{http://ds.bluecava.com/v50/AC/BCAC5.js}{Bluecava BCAC5.js} and \href{http://tags.master-perf-tools.com/V20test/tagv22.pkmin.js}{tagv22.pkmin.js} (which share the same implementation), where similar technique is used: they measure the length of some message to determine the list of font in system (and they don't send their fingerprints to server, only the font list). You can find a table of fingerprinting scripts in \cite{Acar2013,Acar2014}.
 
+Later in TorProject bug-tracker one more script (\href{https://mathid.mathtag.com/device/id.js}{mathtag id.js}) using this technique \href{https://trac.torproject.org/projects/tor/ticket/13400#comment:15}{was mentioned}.
+
 \section{Some offtop about randomization}\label{some-offtop-about-randomization}
 
 In that article the authors suggest the way to randomize fingerprintable values to prevent tracking, but we have already seen how unsuccessful this kind of randomization is. I think that randomization for every site is useless because there is an obvious way to bypass it: to repeat tests and count statistics. If someone will follow the advice in the article and cache randomly generated values persistent for the same site then
@@ -275,6 +277,8 @@ One of solutions is to use the same cache for all the sites, which is dropped in
    \LaTeX\ English version. Text fixes. Separate folder with results.
 \item
    Discovered the paper\cite{Fifield2015} on the same topic with analysis of entropy of characters and fonts.
+\item
+   Added info about mathid id.js and the \href{https://trac.torproject.org/projects/tor/ticket/13400#comment:12}{requested} fingerprints. Fixed the bibliography.
 \end{enumerate}
 
 
