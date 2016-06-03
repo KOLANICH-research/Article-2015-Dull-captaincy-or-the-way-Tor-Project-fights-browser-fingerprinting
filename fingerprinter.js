@@ -13,12 +13,13 @@
 	const charVecSize = 3;
 	const defFonts = [
 		"Times New Roman", "Arial", "Impact", "Courier New", "Bookman Old Style", //Monotype Corporation
-		"Consolas", "MS Gothic", "Constantia", //Microsoft
-		"Calibri", "Cambria", //office
+		"Consolas", "MS Gothic", "Constantia", "Segoe UI", "Verdana", "Meiryo", "Meiryo UI", //Microsoft
+		"Calibri", "Cambria","Cambria Math", "Tahoma", //office
+		"Arimo", "Cousine", "Noto Emoji", "Noto Sans", "Noto Serif", "STIX Math", "Tinos", //TBB-bundled fonts
 		"Wingdings", "Webdings", "Symbol", //symbol
 		"Ubuntu Mono", "Droid Sans", "DejaVu Sans", //linux
 		"Inconsolata", "Inconsolata LGC", "Source Code Pro", "Hack", //coders'
-		"Lucida Handwriting", //Bigelow & Holmes
+		"Lucida Console", "Lucida Handwriting", //Bigelow & Holmes
 		"Georgia", //Carter & Cone
 		"San Francisco", //Apple
 		"System", "vgaoem"
@@ -141,12 +142,18 @@
 				d : res.sansHash,
 				fonts : []
 			};
+			res.fonts["monospace"] = {
+				d : res.monoHash,
+				fonts : []
+			};
 			for (let f of fonts) {
 				let fnt = hashFont(f);
 				if (fnt.d == res.serifHash)
 					res.fonts["serif"].fonts.push(f);
-				else
+				else if (fnt.d == res.serifHash)
 					res.fonts["sans-serif"].fonts.push(f);
+				else
+					res.fonts["monospace"].fonts.push(f);
 			}
 			let resText = JSON.stringify(res.fonts, null, "\t");
 			resultPre.innerHTML = resText;
@@ -200,12 +207,13 @@
 		if (!res.it) {
 			res.serifHash = hashFont("serif").d;
 			res.sansHash = hashFont("sans-serif").d;
+                        res.monoHash = hashFont("monospace").d;
 		}
 		let curr = 0;
 		for (let f of fonts) {
 			let fnt = hashFont(f);
 			res.fontFingerprintingTotalTime += fnt.t;
-			if (fnt.d != res.serifHash && fnt.d != res.sansHash) {
+			if (fnt.d != res.serifHash && fnt.d != res.sansHash && fnt.d != res.monoHash) {
 				res.fonts[f] = fnt.d;
 			}
 			prb.value = (++curr) / fonts.length;
@@ -213,7 +221,7 @@
 
 		res.it++;
 		resultPre.innerHTML = JSON.stringify(res, null, "\t");
-		save(storageVarName,JSON.stringify(res));
+		save(storageVarName, JSON.stringify(res));
 		window.location.reload();
 	}
 	document.addEventListener("DOMContentLoaded", doFingerprinting, false);

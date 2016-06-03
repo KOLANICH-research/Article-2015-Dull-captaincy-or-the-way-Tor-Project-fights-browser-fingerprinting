@@ -1,0 +1,45 @@
+{
+	"Times New Roman" : "acdd04109fc8816b6d6f0e0e",
+	"Arial" : "acdd04109fc8816b6d6f0e0e",
+	"Impact" : "acdd04109fc8816b6d6f0e0e",
+	"Courier New" : "acdd04109fc8816b6d6f0e0e",
+	"Bookman Old Style" : "acdd04109fc8816b6d6f0e0e",
+	"Consolas" : "acdd04109fc8816b6d6f0e0e",
+	"MS Gothic" : "acdd04109fc8816b6d6f0e0e",
+	"Constantia" : "acdd04109fc8816b6d6f0e0e",
+	"Calibri" : "acdd04109fc8816b6d6f0e0e",
+	"Cambria" : "acdd04109fc8816b6d6f0e0e",
+	"Arimo" : "a0efce963932084100be0412",
+	"Cousine" : "060c3a31924017bc432914a3",
+	"NotoSans" : "acdd04109fc8816b6d6f0e0e",
+	"NotoSerif" : "acdd04109fc8816b6d6f0e0e",
+	"STIXMath" : "acdd04109fc8816b6d6f0e0e",
+	"Tinos" : "59801b5b525115b5d825c600",
+	"Wingdings" : "acdd04109fc8816b6d6f0e0e",
+	"Webdings" : "acdd04109fc8816b6d6f0e0e",
+	"Symbol" : "acdd04109fc8816b6d6f0e0e",
+	"Ubuntu Mono" : "acdd04109fc8816b6d6f0e0e",
+	"Droid Sans" : "acdd04109fc8816b6d6f0e0e",
+	"DejaVu Sans" : "acdd04109fc8816b6d6f0e0e",
+	"Inconsolata" : "acdd04109fc8816b6d6f0e0e",
+	"Inconsolata LGC" : "acdd04109fc8816b6d6f0e0e",
+	"Source Code Pro" : "acdd04109fc8816b6d6f0e0e",
+	"Hack" : "acdd04109fc8816b6d6f0e0e",
+	"Lucida Handwriting" : "acdd04109fc8816b6d6f0e0e",
+	"Georgia" : "acdd04109fc8816b6d6f0e0e",
+	"San Francisco" : "acdd04109fc8816b6d6f0e0e",
+	"System" : "acdd04109fc8816b6d6f0e0e",
+	"vgaoem" : "acdd04109fc8816b6d6f0e0e",
+	"serif" : {
+		"d" : "cd56b1db51b0f97f5d4ca8c7",
+		"fonts" : []
+	},
+	"sans-serif" : {
+		"d" : "1c1000198a64ffe128f7bea9",
+		"fonts" : []
+	},
+	"monospace" : {
+		"d" : "fb87115c63ecc1eadadf5d3a",
+		"fonts" : []
+	}
+}
