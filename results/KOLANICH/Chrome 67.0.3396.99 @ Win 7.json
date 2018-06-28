@@ -1,0 +1,57 @@
+{
+	"Impact" : "f7c59498a8174c6ba590dd35",
+	"Courier New" : "216dc0d0c1beb8ba8a133ac4",
+	"Bookman Old Style" : "e17d8f1faccc1537342b1a30",
+	"Consolas" : "7490724f6050e2ee33853c9d",
+	"MS Gothic" : "14ea04ab1cc4614d80c45f00",
+	"Constantia" : "a747d278b0e529b80db3d6ef",
+	"Segoe UI" : "1b3365fed34f4a8f9c2ec6d3",
+	"Verdana" : "d617b550826208fdefe277eb",
+	"Meiryo" : "bc2f8c9fd0907ec452b6fd98",
+	"Meiryo UI" : "85695b49dd4f6cff12bb2bb4",
+	"Calibri" : "7520c9e9c3c718931ed03833",
+	"Cambria" : "c5f006cf459804bf1229324f",
+	"Cambria Math" : "b505fb4e4aeac080dad5d7e7",
+	"Tahoma" : "9782e3e0c331137d61184509",
+	"Noto Emoji" : "cebd534f9541c4fe30075e21",
+	"Noto Sans" : "39459b00f5d96d0d33eee5e9",
+	"Noto Serif" : "01660a2b1328ff483640b36c",
+	"STIX Math" : "42fab60ac1c6aaf4fc55280b",
+	"Wingdings" : "358aa8d42dfba8751e45166b",
+	"Webdings" : "21e6919938251ed63a7dad51",
+	"Symbol" : "ccd9890371d3d2d59fe28731",
+	"Ubuntu Mono" : "5bfc1a5360507dd71f0ee9cd",
+	"DejaVu Sans" : "3b8f8e9e99d4848db377b315",
+	"Fira Mono" : "9ebc5023a9b34f64f3da7d8c",
+	"Fira Code" : "d690f89400bc74cd3e6d6b52",
+	"Lucida Console" : "b12991e0608f435689af481b",
+	"Lucida Handwriting" : "e2b0a702dc4d219c0271501e",
+	"Georgia" : "27fc7d66b3c33f7118f44182",
+	"serif" : {
+		"d" : "a47cef92402521289c2e6516",
+		"fonts" : [
+			"Times New Roman",
+			"Arimo",
+			"Cousine",
+			"Tinos",
+			"Droid Sans",
+			"Inconsolata",
+			"Inconsolata LGC",
+			"Source Code Pro",
+			"Hack",
+			"San Francisco",
+			"System",
+			"vgaoem"
+		]
+	},
+	"sans-serif" : {
+		"d" : "04ab105129645074ee67d4ed",
+		"fonts" : []
+	},
+	"monospace" : {
+		"d" : "8d2a6a1016ee2860583884f7",
+		"fonts" : [
+			"Arial"
+		]
+	}
+}

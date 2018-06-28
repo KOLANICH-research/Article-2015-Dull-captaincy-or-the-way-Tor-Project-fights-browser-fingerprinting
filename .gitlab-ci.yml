@@ -1,0 +1,36 @@
+image: miktex/miktex
+
+build:
+  tags:
+    - shared
+  stage: build
+  cache:
+    paths:
+      - /miktex/.miktex
+  variables:
+    GIT_DEPTH: "1"
+    MIKTEX_REPOSITORY: "https://ftp.rrze.uni-erlangen.de/ctan/systems/win32/miktex/tm/packages/"
+    #MIKTEX_REPOSITORY: "https://packages.oth-regensburg.de/ctan/systems/win32/miktex/tm/packages/"
+  before_script:
+    - apt install fonts-firacode fonts-stix
+    - mpm --help
+    - mpm --admin --update-db
+    #- for pkg in $(cat ./requirements.txt); do mpm --install=$pkg; done
+    - mpm --verbose --admin --require=@./requirements.txt;
+    - initexmf --report 
+  script:
+    - xelatex -help
+    - xelatex -disable-installer -enable-etex -enable-mltex -disable-write18 -c-style-errors -interaction=scrollmode "./readme.en.tex" || true
+    - cat /miktex/.miktex/texmfs/data/miktex/log/xelatex.log
+    - cat /miktex/.miktex/texmfs/data/miktex/log/initexmf.log
+    - cat /miktex/.miktex/texmfs/data/miktex/log/miktex-makefmt.log
+    - rm -r /miktex/.miktex/texmfs/data/miktex/log/*
+    - test -e ./readme.en.pdf
+    - makeindex readme.en.idx
+    - xelatex -disable-installer -enable-etex -enable-mltex -disable-write18 -c-style-errors -interaction=scrollmode "./readme.en.tex" || true
+    - cat /miktex/.miktex/texmfs/data/miktex/log/xelatex.log
+    - test -e ./readme.en.pdf
+  artifacts:
+    paths:
+      - readme.en.pdf
+      - /miktex/.miktex/texmfs/data/miktex/log/

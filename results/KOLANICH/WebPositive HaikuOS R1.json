@@ -1,0 +1,58 @@
+{
+	"MS Gothic" : "a7f07358aa25bb33077eb4d1",
+	"Meiryo" : "a7f07358aa25bb33077eb4d1",
+	"serif" : {
+		"d" : "0401de0bbec088969a6fa034",
+		"fonts" : [
+			"Noto Serif"
+		]
+	},
+	"sans-serif" : {
+		"d" : "2692c650403af4b194ac4348",
+		"fonts" : []
+	},
+	"monospace" : {
+		"d" : "4a57d5242eff68aaec8e722f",
+		"fonts" : [
+			"Times New Roman",
+			"Arial",
+			"Impact",
+			"Courier New",
+			"Bookman Old Style",
+			"Consolas",
+			"Constantia",
+			"Segoe UI",
+			"Verdana",
+			"Meiryo UI",
+			"Calibri",
+			"Cambria",
+			"Cambria Math",
+			"Tahoma",
+			"Arimo",
+			"Cousine",
+			"Noto Emoji",
+			"Noto Sans",
+			"STIX Math",
+			"Tinos",
+			"Wingdings",
+			"Webdings",
+			"Symbol",
+			"Ubuntu Mono",
+			"Droid Sans",
+			"DejaVu Sans",
+			"Inconsolata",
+			"Inconsolata LGC",
+			"Source Code Pro",
+			"Hack",
+			"Fira Mono",
+			"Fira Code",
+			"Lucida Console",
+			"Lucida Handwriting",
+			"Georgia",
+			"San Francisco",
+			"Poor Richard",
+			"System",
+			"vgaoem"
+		]
+	}
+}

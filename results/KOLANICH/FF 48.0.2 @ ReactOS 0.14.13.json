@@ -1,0 +1,62 @@
+{
+	"Verdana": "e38bca984f969fdfa9ca37ed",
+	"Tahoma": "b172db1ac934378e64830cb6",
+	"Symbol": "6cf8fff01bc2520d1b91e349",
+	"Ubuntu Mono": "5a4d64d3071dce54795e0e74",
+	"DejaVu Sans": "7e391187eef97b0c660d283b",
+	"Source Code Pro": "5718e5d3bd286df2cb63ddf6",
+	"Lucida Console": "57772e13177ccbd855139d1d",
+	"Georgia": "3dd94c574190409fc5097050",
+	"System": "81c332bc1c80f2218b48548c",
+	"serif": {
+		"d": "ed12f50112c535adcc962693",
+		"fonts": [
+			"Times New Roman",
+			"Impact",
+			"Bookman Old Style",
+			"PT Sans",
+			"PT Serif",
+			"PT Astra Sans",
+			"PT Astra Serif",
+			"Consolas",
+			"MS Gothic",
+			"Constantia",
+			"Segoe UI",
+			"Meiryo",
+			"Meiryo UI",
+			"Calibri",
+			"Cambria",
+			"Cambria Math",
+			"Arimo",
+			"Cousine",
+			"Noto Emoji",
+			"Noto Sans",
+			"Noto Serif",
+			"STIX Math",
+			"Tinos",
+			"Wingdings",
+			"Webdings",
+			"Droid Sans",
+			"Inconsolata",
+			"Inconsolata LGC",
+			"Hack",
+			"Fira Mono",
+			"Fira Code",
+			"Lucida Handwriting",
+			"San Francisco",
+			"Poor Richard",
+			"vgaoem"
+		]
+	},
+	"sans-serif": {
+		"d": "c5088ee307e15f6754974b05",
+		"fonts": []
+	},
+	"monospace": {
+		"d": "a6c4d25beee61cfd65d03faf",
+		"fonts": [
+			"Arial",
+			"Courier New"
+		]
+	}
+}

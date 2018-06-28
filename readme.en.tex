@@ -1,7 +1,24 @@
 \documentclass[letterpaper,14pt]{article}
-\usepackage[utf8]{inputenc}
+
+%xelatex shit
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Ubuntu}
+\setromanfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{Fira Code}
+%\setmathfont{Cambria Math}
+\setmathfont{STIX Math}
+
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setmainlanguage{english} 
+%end of xelatex shit
+
 \usepackage{geometry,amsmath,amssymb,graphicx,smartref,float,tocloft,appendix,multirow,subcaption,listings,epsfig,endnotes, csquotes}
-\usepackage[english]{babel}
 \usepackage[textsize=tiny,obeyDraft]{todonotes}
 \usepackage{titletoc}
 \pagestyle{myheadings}
@@ -13,27 +30,46 @@
 \usepackage{hyperxmp}
 \usepackage[backend=bibtex, sorting=none]{biblatex}
 \usepackage[nottoc,numbib]{tocbibind}
+\usepackage{attachfile2}
+
+
+\attachfilesetup {
+  color=blue
+}
+\def\fpResultFile#1#2#3{
+	\attachfile[mimetype=application/json, subject=#1, description=#1, author=#2]{./results/#2/#3}
+}
+
+
+\lstloadlanguages{JavaScript}
+\def\fpResultListing#1#2#3{
+	\lstinputlisting[caption="#1",language=JavaScript,basicstyle=\ttfamily,]{"./results/#2/#3"}
+	\fpResultFile{#1}{#2}{#3}
+}
 
 \geometry{left=30mm, right=20mm}
 \lstset{breaklines=true, breakatwhitespace=true, extendedchars=true, numbers=left}
 \hypersetup{
 	pdfinfo={
 		Subject={Bypassing TBB's protection for font canvas fingerprinting},
-		Url={https://github.com/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting},
+		Title={Bypassing TBB's protection for font canvas fingerprinting},
+		Url={https://gitlab.com/KOLANICH1/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting},
 		Year={2014-2015},
 		Licenseurl={https://creativecommons.org/licenses/by-sa/4.0/},
 		Keywords={{JavaScript}, {HTML}, {information security}, {anonymity}, {Tor}, {TAILS}, {Whonix}, {fingerprinting}, {canvas}, {privacy}, {attacks}, {fingerprints}, {deanonymization}},
 	},
 	pdflang={en},
-	urlcolor=blue
+	urlcolor={blue},
+	pdfstartview={FitH},
+	pdfpagemode={UseOutlines},
 }
 \usepackage[type={CC},modifier={by-sa},version={4.0}]{doclicense}
 \addbibresource{bibliography.bib}
 
 \begin{document}
 
-\title{Dull \href{https://encyclopediadramatica.se/Captain_Obvious}{captaincy} or the way Tor Project fights browser fingerprinting}
-\author{\href{https://github.com/KOLANICH}{KOLANICH}}
+\title{Dull \href{https://encyclopediadramatica.rs/Captain_Obvious}{captaincy} or the way Tor Project fights browser fingerprinting}
+\author{\href{https://gitlab.com/KOLANICH1}{KOLANICH}}
 \date{2015-01-15}
 \maketitle
 \begin{abstract}\label{abstract}
@@ -59,9 +95,9 @@ The method was based on the fact that different browsers in different environmen
 \item
   library functions can be invoked using different parameters;
 \item
-  different versions of \href{http://www.freetype.org/}{libfreetype}\footnote{`FreeType is a software font engine that is designed to be small, efficient, highly customizable, and portable while capable of producing high-quality output (glyph images).'} or other rendering libraries can be used;
+  different versions of \href{https://www.freetype.org/}{libfreetype}\footnote{`FreeType is a software font engine that is designed to be small, efficient, highly customizable, and portable while capable of producing high-quality output (glyph images).'} or other rendering libraries can be used;
 \item
-  different OSes with different settings can render text differently (for example, \href{http://habrahabr.ru/post/247703/}{different versions of ClearType\texttrademark\footnote{a technology of subpixel font antialiasing}} or different screen resolution);
+  different OSes with different settings can render text differently (for example, \href{https://habr.com/post/247703/}{different versions of ClearType\texttrademark\footnote{a technology of subpixel font antialiasing}} or different screen resolution);
 \item
   different graphics drivers;
 \item
@@ -76,7 +112,7 @@ The authors have recommended using the software rendering without using OS and o
 
 There are other APIs, leaking information, which are (certainly!) not protected. For example, the text measuring API. If text is rendered differently, it means its sizes must be slightly different. Let's check this hypothesis using canvas \href{https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.measureText}{measureText} API and DOM \href{https://developer.mozilla.org/en-US/docs/Web/API/Element.getBoundingClientRect}{getBoundingClientRect} API.
 
-You can contribute, to do it you need to clone\footnote{\lstinline!git clone https://github.com/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting.git!} \href{https://github.com/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting}{the repo}, download and run the latest (or any other) \href{https://www.torproject.org/download/download.html.en}{TBB}\footnote{Tor Browser Bundle, a set of programs for anonymous web surfing}, open the HTML file from the repo, and \textbf{to post your result as a comment or pull request}. Also, you can visit \href{http://jsfiddle.net/fyw4qmdg/5/}{a fiddle} or a \href{http://fiddle.jshell.net/fyw4qmdg/5/show/}{full-window fiddle}. Of course, we could not use hashes, this would have given ad more possibilities to mine the data, but even a compressed set of information about every font takes a lot of storage. It is not an issue for storage-enabled browsers, but is if we have to use cookies\footnote{a technology allowing to save small amounts (4097 bytes in most of browsers) of data which will be sent to server on any http request} instead. That's why we use \href{https://en.wikipedia.org/wiki/BLAKE_%28hash_function%29}{Blake2} hashes. \href{https://github.com/dchest/blake2s-js}{The implementation used} is by dchest.
+You can contribute, to do it you need to clone\footnote{\lstinline!git clone https://gitlab.com/KOLANICH1/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting.git!} \href{https://gitlab.com/KOLANICH1/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting}{the repo}, download and run the latest (or any other) \href{https://www.torproject.org/download/download.html.en}{TBB}\footnote{Tor Browser Bundle, a set of programs for anonymous web surfing}, open the HTML file from the repo, and \textbf{to post your result as a comment or pull request}. Also, you can visit \href{https://jsfiddle.net/fyw4qmdg/5/}{a fiddle} or a \href{https://fiddle.jshell.net/fyw4qmdg/5/show/}{full-window fiddle}. Of course, we could not use hashes, this would have given ad more possibilities to mine the data, but even a compressed set of information about every font takes a lot of storage. It is not an issue for storage-enabled browsers, but is if we have to use cookies\footnote{a technology allowing to save small amounts (4097 bytes in most of browsers) of data which will be sent to server on any http request} instead. That's why we use \href{https://en.wikipedia.org/wiki/BLAKE_%28hash_function%29}{Blake2} hashes. \href{https://github.com/dchest/blake2s-js}{The implementation used} is by dchest.
 
 Should be noted that some time after release of this paper I have found the study\cite{Fifield2015} with analysis of entropy of fonts and characters acquired in the method similar to the one used this study.
 
@@ -86,59 +122,54 @@ Should be noted that some time after release of this paper I have found the stud
 
 At first I ran Firefox of stable and nightly versions on the same system.
 
-\lstinputlisting[caption="Firefox 35.0 and Firefox Nightly 37.0a1 on Windows\texttrademark\ 8.1"]{"results/KOLANICH/FF 35.0 37.0a1 @ Win 8.1.json"}
+\fpResultListing{Firefox 35.0 and Firefox Nightly 37.0a1 on Windows\texttrademark\ 8.1}{KOLANICH}{FF 35.0 37.0a1 @ Win 8.1.json}
 
 The results were the same for both. What about Windows\texttrademark\ Se7en?
 
-\lstinputlisting[caption="Firefox 35.0 on Windows\texttrademark\ 7"]{"results/KOLANICH/FF 35.0 @ Win 7.json"}
+\fpResultListing{Firefox 35.0 on Windows\texttrademark\ 7}{KOLANICH}{FF 35.0 @ Win 7.json}
 
 They are different.
 
 Let's try to switch the parameters and look how they affect it. Changing ClearType\texttrademark\ prefs did nothing, so does switching DirectWrite, but enabling e10s\footnote{electrolysis, \href{https://wiki.mozilla.org/Electrolysis}{a project for making Firefox multiprocess}, as Chromium\texttrademark\ is} has changed the fingerprint (and broken page rendering: all pages had been seen as a black rectangle).
 
-\lstinputlisting[caption="Firefox Nightly 37.0a1 with e10s enabled on Windows\texttrademark\ 8.1"]{"results/KOLANICH/FF 37.0a1 e10s @ Win 8.1.json"}
+\fpResultListing{Firefox Nightly 37.0a1 with e10s enabled on Windows\texttrademark\ 8.1}{KOLANICH}{FF 37.0a1 e10s @ Win 8.1.json}
 
-\paragraph{Concerning ECMAScript 6 implementations and other compatibility issues}\label{concerning-ecmascript-6-implementations}
+\fpResultListing{Chrome\texttrademark\ 39.0.2171.95 on Windows\texttrademark\ 8.1}{KOLANICH}{Chrome 39.0.2171.95 @ Win 8.1.json}
 
-To run it in Chromium\texttrademark/Chrome\texttrademark\ you need to change the source a bit - it doesn't recognize \lstinline!type="application/javascript;version=1.7"!. When I tried to run it in TBB, Storage API\footnote{a HTML5 API, allowing to save huge amounts of data} wasn't working; it seems it was intentionally disabled, so I have to use cookies. Concerning compatibility: implementations of ES6\footnote{ECMAScript 6, a new version of JavaScript which is much better than ES5} in different browsers are very poorly compatible with each other: the one doesn't support GeneratorFunctions (ones with asterisk), another one doesn't support them without asterisk, some need \lstinline!"use strict";! wrapped into a function to enable strict mode to enable ES6 in this browser, another don't support arrow functions (so you won't find results for it in this article). Firefox behaves best of them, it needs only \lstinline!type="application/javascript;version=1.7"!.
+Also, \href{https://habr.com/users/starius/}{@starius} the \href{https://habr.com/}{Habr} (then GeekTimes) user \href{https://habr.com/post/356632/\#comment_8227810}{has published his results}.
 
-
-\lstinputlisting[caption="Chrome\texttrademark\ 39.0.2171.95 on Windows\texttrademark\ 8.1"]{"results/KOLANICH/Chrome 39.0.2171.95 @ Win 8.1.json"}
-
-Also, \href{https://geektimes.ru/users/starius/}{@starius} the \href{http://habrahabr.ru/}{habrahabr} user \href{https://geektimes.ru/post/244484/\#comment_8227810}{has published his results}.
-
-\lstinputlisting[caption="IceWeasel on GNU/Linux\texttrademark\ by @starius"]{"results/starius/IW @ Linux.json"}
+\fpResultListing{IceWeasel on GNU/Linux\texttrademark\ by @starius}{results/starius/IW @ Linux.json}
 
 Android is not forgotten
 
-\lstinputlisting[caption="Firefox on CyanogenMod 11 Nightly"]{"results/KOLANICH/FF @ CM11.json"}
+\fpResultListing{Firefox on CyanogenMod 11 Nightly}{KOLANICH}{FF @ CM11.json}
 
 \subsection{Tor Browser Bundle}\label{tor-browser-bundle}
 
 The fingerprint made on TBB of the version A at Win 8.1 is PARTIALLY the same that the fingerprint for Firefox Nightly with e10s enabled. Particularly the fingerprints for Courier New, Georgia and System fonts are different.
 
-\lstinputlisting[caption="TBB version A on Win 8.1"]{"results/KOLANICH/TBB, TAILS, Whonix/TBB A @ Win 8.1.json"}
+\fpResultListing{TBB version A on Win 8.1}{KOLANICH}{TBB, TAILS, Whonix/TBB A @ Win 8.1.json}
 
 Let's try on another Win XP-based system.
 
-\lstinputlisting[caption="TBB version A on Win XP"]{"results/KOLANICH/TBB, TAILS, Whonix/TBB A @ Win XP.json"}
+\fpResultListing{TBB version A on Win XP}{KOLANICH}{TBB, TAILS, Whonix/TBB A @ Win XP.json}
 
 Let's try another TBB version in the same environment.
 
-\lstinputlisting[caption="TBB version B on WinXP with browser.display.use\_document\_fonts=1 (the default settings)"]{"results/KOLANICH/TBB, TAILS, Whonix/TBB B @ Win XP.json"}
+\fpResultListing{TBB version B on WinXP with browser.display.use\_document\_fonts=1 (the default settings)}{KOLANICH}{TBB, TAILS, Whonix/TBB B @ Win XP.json}
 
 
 Then I have disabled fonts rendering using \href{about:config}{\url{about:config}} preference \lstinline!browser.display.use_document_fonts!.
 
-\lstinputlisting[caption="TBB version B in WinXP with browser.display.use\_document\_fonts=0 (the default value)"]{"results/KOLANICH/TBB, TAILS, Whonix/TBB B (browser.display.use_document_fonts=0) @ Win XP.json"}
+\fpResultListing{TBB version B in WinXP with browser.display.use\_document\_fonts=0 (the default value)}{KOLANICH}{TBB, TAILS, Whonix/TBB B (browser.display.use_document_fonts=0) @ Win XP.json}
 
 
 It was observed that in this case an adversary only can extract the information about fallback font.
 
-\href{https://geektimes.ru/post/244484/\#comment_8227810}{The partial results} by \href{https://geektimes.ru/users/starius/}{@starius} are
+\href{https://habr.com/post/356632/\#comment_8227810}{The partial results} by \href{https://habr.com/users/starius/}{@starius} are
 
 
-\lstinputlisting[caption="TBB version ? on GNU/Linux\texttrademark\ by starius"]{"results/starius/TBB @ Linux.partial.json"}
+\fpResultListing{TBB version ? on GNU/Linux\texttrademark\ by starius}{starius}{TBB @ Linux.partial.json}
 
 These fingerprints are the same that he has got for IceWeasel.
 
@@ -150,54 +181,54 @@ I have tested \href{https://tails.boum.org/}{TAILS}\footnote{The Amnesic Incogni
 
 Let's see what fingerprint TBB on TAILS gives us.
 
-\lstinputlisting[caption="TBB 4.0.2 Tails (both on hardware and in VM)"]{"results/KOLANICH/TBB, TAILS, Whonix/TBB 4.0.2 @ TAILS.json"}
+\fpResultListing{TBB 4.0.2 Tails (both on hardware and in VM)}{KOLANICH}{TBB, TAILS, Whonix/TBB 4.0.2 @ TAILS.json}
 
 Then let's see a fingerprint of IceWeasel on Whonix
 
-\lstinputlisting[caption="IceWeasel Whonix"]{"results/KOLANICH/TBB, TAILS, Whonix/IW @ Whonix.json"}
+\fpResultListing{IceWeasel Whonix}{KOLANICH}{TBB, TAILS, Whonix/IW @ Whonix.json}
 
 And, finally, TBB on Whonix
 
-\lstinputlisting[caption="TBB Whonix"]{"results/KOLANICH/TBB, TAILS, Whonix/TBB @ Whonix.json"}
+\fpResultListing{TBB Whonix}{KOLANICH}{TBB, TAILS, Whonix/TBB @ Whonix.json}
 
-This matches \href{https://geektimes.ru/post/244484/\#comment_8227810}{the partial results} obtained by \href{https://geektimes.ru/users/starius/}{@starius}, and it is a good thing. Fingerprints of TBB and IceWeasel are not fully equal: there is 1 font more available in IceWeasel than in TBB. We can see a strong difference between fingerprints of TAILS, Whonix and TBB in different environments, and it is the bad thing. This means that an adversary can distinguish between TBB on different OS'es.
+This matches \href{https://habr.com/post/356632/\#comment_8227810}{the partial results} obtained by \href{https://habr.com/users/starius/}{@starius}, and it is a good thing. Fingerprints of TBB and IceWeasel are not fully equal: there is 1 font more available in IceWeasel than in TBB. We can see a strong difference between fingerprints of TAILS, Whonix and TBB in different environments, and it is the bad thing. This means that an adversary can distinguish between TBB on different OS'es.
 
 \subsection{GNU/Linux\texttrademark\ and fonts}\label{linux-and-fonts}
 
 Let's check some GNU/Linux\texttrademark\ distro.
 
-\lstinputlisting[caption="IceWeasel 24.7.0 on GNU/Linux\texttrademark"]{"results/KOLANICH/Linux fonts/IW 24.7.0 @ Linux.json"}
+\fpResultListing{IceWeasel 24.7.0 on GNU/Linux\texttrademark}{KOLANICH}{Linux fonts/IW 24.7.0 @ Linux.json}
 
-It doesn't match \href{https://geektimes.ru/post/244484/\#comment_8227810}{the results} by \href{https://geektimes.ru/users/starius/}{@starius}.
+It doesn't match \href{https://habr.com/post/356632/\#comment_8227810}{the results} by \href{https://habr.com/users/starius/}{@starius}.
 
 Then I have been installing into it some fonts copied from Win 8.1 to test whether I get the same fingerprint and observed a strange thing - font interdependence.
 
 Firstly I have installed Consolas\texttrademark, which caused the changes in all fingerprints.
 
-\lstinputlisting[caption="IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with Consolas\texttrademark"]{"results/KOLANICH/Linux fonts/IW 24.7.0 @ Linux + Consolas.json"}
+\fpResultListing{IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with Consolas\texttrademark}{KOLANICH}{Linux fonts/IW 24.7.0 @ Linux + Consolas.json}
 
 Then I have installed Constantia\texttrademark.
 
-\lstinputlisting[caption="IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with Consolas\texttrademark\ and Constantia\texttrademark"]{"results/KOLANICH/Linux fonts/IW 24.7.0 @ Linux + Consolas + Constantia.json"}
+\fpResultListing{IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with Consolas\texttrademark\ and Constantia\texttrademark}{KOLANICH}{Linux fonts/IW 24.7.0 @ Linux + Consolas + Constantia.json}
 
 Then I have installed a bunch of fonts (except Times New Roman\texttrademark\ and Arial\texttrademark), which caused changes in all present fingerprints, except Consolas's\texttrademark. The most strange thing is that font Inconsolata mysteriously appeared though I haven't installed it (don't laugh, it wasn't copied from Windows\texttrademark).
 
-\lstinputlisting[caption="IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with bunch of Fonts"]{"results/KOLANICH/Linux fonts/IW 24.7.0 @ Linux + Fonts.json"}
+\fpResultListing{IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with bunch of Fonts}{KOLANICH}{Linux fonts/IW 24.7.0 @ Linux + Fonts.json}
 
 
 Then I have installed Times New Roman\texttrademark, which caused total change \ldots{} Inconsolata mysteriously disappeared\ldots{}
 
-\lstinputlisting[caption="IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with bunch of fonts Fonts and Times New Roman\texttrademark"]{"results/KOLANICH/Linux fonts/IW 24.7.0 @ Linux + Fonts + Times New Roman.json"}
+\fpResultListing{IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with bunch of fonts Fonts and Times New Roman\texttrademark}{KOLANICH}{Linux fonts/IW 24.7.0 @ Linux + Fonts + Times New Roman.json}
 
 Then I have installed Arial\texttrademark, which only caused changes in itself and sans-serif.
 
-\lstinputlisting[caption="IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with bunch of Fonts and Times New Roman\texttrademark\ and Arial\texttrademark"]{"results/KOLANICH/Linux fonts/IW 24.7.0 @ Linux + Fonts + Times New Roman + Arial.json"}
+\fpResultListing{IceWeasel 24.7.0 on GNU/Linux\texttrademark\ with bunch of Fonts and Times New Roman\texttrademark\ and Arial\texttrademark}{KOLANICH}{Linux fonts/IW 24.7.0 @ Linux + Fonts + Times New Roman + Arial.json}
 
-Some offtop: during the study I have found that a large fraction of fonts contain a comment which has advices how the font was meant to be used. It's a pity that most of rich text editors (at least the ones on windows) don't show this comment in tooltip.
+Some offtop: during the study I have found that a large fraction of fonts contain a comment which has advices how the font was meant to be used. It's a pity that most of rich text editors (at least the ones on windows) don't show this comment in a tooltip.
 
 \section{In The Wild}\label{in-the-wild}
 
-After I have published this article (in Russian) a \href{https://trac.torproject.org/projects/tor/query?reporter=gk}{user gk from  Tor Project's bug tracker} \href{https://trac.torproject.org/projects/tor/ticket/14310\#comment:3}{advised me an interesting article} \cite{Nikiforakis2014}. The article has meant some tracking scripts, at least \href{http://ds.bluecava.com/v50/AC/BCAC5.js}{Bluecava BCAC5.js} and \href{http://tags.master-perf-tools.com/V20test/tagv22.pkmin.js}{tagv22.pkmin.js} (which share the same implementation), where similar technique is used: they measure the length of some message to determine the list of font in system (and they don't send their fingerprints to server, only the font list). You can find a table of fingerprinting scripts in \cite{Acar2013,Acar2014}.
+After I have published this article (in Russian) a \href{https://trac.torproject.org/projects/tor/query?reporter=gk}{user gk from  Tor Project's bug tracker} \href{https://trac.torproject.org/projects/tor/ticket/14310\#comment:3}{advised me an interesting article} \cite{Nikiforakis2014}. The article has meant some tracking scripts, at least \href{https://ds.bluecava.com/v50/AC/BCAC5.js}{Bluecava BCAC5.js} and \href{https://tags.master-perf-tools.com/V20test/tagv22.pkmin.js}{tagv22.pkmin.js} (which share the same implementation), where similar technique is used: they measure the length of some message to determine the list of font in system (and they don't send their fingerprints to server, only the font list). You can find a table of fingerprinting scripts in \cite{Acar2013,Acar2014}.
 
 Later in TorProject bug-tracker one more script (\href{https://mathid.mathtag.com/device/id.js}{mathtag id.js}) using this technique \href{https://trac.torproject.org/projects/tor/ticket/13400#comment:15}{was mentioned}.
 
@@ -217,6 +248,22 @@ In that article the authors suggest the way to randomize fingerprintable values 
 
 One of solutions is to use the same cache for all the sites, which is dropped in the end of the session. It won't kill tracking of the session, but won't allow creating a fingerprint persisting between sessions.
 
+\section{3,5 Years later ...}\label{35anniversary}
+I have rechecked the viability of this technique nearly 3,5 years later.
+\begin{enumerate}
+	\item Firefox setting privacy.resistFingerprinting was introduced. It doesn't affect this method, with it true and false the fingerprints are the same.  \fpResultFile{Firefox 62.0b6}{KOLANICH}{FF 62.0b6 @ Win 7.json} \fpResultFile{Firefox 63.0a1}{KOLANICH}{FF 63.0a1 @ Win 7.json}.
+	\item Tor Browser still exposes different fonts. \fpResultFile{Tor Browser 8.0a9}{KOLANICH}{TBB, TAILS, Whonix/TBB 8.0a9 @ Win 7.json}. Since there are not so many fonts shipped, they may be system fonts.
+	\item Tor Browser security level doesn't affect fingerprints.
+	\item the differences in fingerprints between different versions of browsers (FF 62.0b6 vs FF 63.0a1, and FF vs TBB, differences between TBB 7.5.6 and TBB 8.0a9 were not observed) on the same system still persist.
+	\item The countermeasures proposed have still not been implemented.
+	\item \href{https://github.com/brave/browser-laptop}{Brave web browser} has been tested. \fpResultFile{Brave 0.23.31}{KOLANICH}{Brave 0.23.31 (FP blocking mode) @ Win 7.json}. It has the mode for fingerprinting resistance. With this mode disabled the fingerprints are nearly identical to the ones produced by Chrome 67.0.3396.99 \fpResultFile{Chrome 67.0.3396.99}{KOLANICH}{Chrome 67.0.3396.99 @ Win 7.json}. When this mode is enabled the fingerprinter was detected as a fingerprinter and the fingerprints have been changed. Though this mode still allows font enumeration. The fingerprints are persistent across browsers restarts. Analysis of the source code showed that fonts fingerprinting via getBoundingClientRect does not trigger detection of fingerprinter and the fingerprints using only getBoundingClientRect are not affected by fingerprinting protection mode. It was confirmed by \href{https://github.com/brave/browser-laptop/wiki/Fingerprinting-Protection-Mode}{the info on the documentation page}. The bundle contains fonts, though it is yet to be verified whether they would give the same fingerprints on different systems.
+
+	Brave fingerprinting protection poses significant performance overhead, and it requires additional research if the delay is fingerprintable itself. Fingerprinting detection is implemented in JS and may be portable to other browsers.
+	
+	Note: If you wanna test this fingerprinter on Brave, you need a web server since Brave for now doesn't open file:/// URIs.
+\end{enumerate}
+
+
 \section{Conclusions}\label{conclusions}
 
 \begin{itemize}
@@ -231,14 +278,16 @@ One of solutions is to use the same cache for all the sites, which is dropped in
   , which is a known as a bad insecure practice because it runs the code from remote server on PC without checking, bypasses package manager and any time a malware can become available by such an address due bunch of different reasons, for example NSA can force the CA to issue a new certificate, make MiTM attack and spread malicious script. HTTP Public Key Pinning partly helps, but by the moment I was writing this article it \href{https://www.ssllabs.com/ssltest/analyze.html?d=torproject.org}{was not enabled on that server}.\\
   Tails can be exclusion - because the fingerprint doesn't depend on hardware and users of the same versions have the same environments (without being Evil Buratino Yourself, of course), but don't forget that JS vastly increases attack surface for different exploits, including remote code execution ones. Disabling features can be detected, that's why we need them be disabled for all the users of actual versions. Post your ideas to \href{https://trac.torproject.org/}{Tor Project bug tracker}. You don't have to register: you can use the official shared account with the login \textbf{cypherpunks} and the password \textbf{writecode}.
 \item
-  Disabling JS won't help because there are CSS (sophisticated technology of styling elements, \href{https://github.com/i0z/nojsgame}{allowing even creating simple games without any line of JS code!}), using which it is also possible to extract info about computer, but this will make tracking a bit harder because CSS allows to extract less information than JS and it is harder to send it to server. Even if we disable CSS, there will be other holes. So, I don't think that disabling CSS will help you much.
+  Disabling JS won't help because there are CSS (sophisticated technology of styling elements, allowing implementation of \href{https://github.com/you-dont-need/You-Dont-Need-JavaScript}{the things webmasters need without any line of JS} \href{https://github.com/i0z/nojsgame}{and even creating simple games without any line of JS code!}), using which it is also possible to extract info about computer, but this will make tracking a bit harder because CSS allows to extract less information than JS and it is harder to send it to server. Even if we disable CSS, there will be other holes. So, I don't think that disabling CSS will help much.
+  UPD: \href{https://github.com/jbtronics/CrookedStyleSheets}{A prototype of fingerprinter using CSS was developed}, just as expected and using the techniques expected. Can be mitigated by making a web browser to cache all the external resources on page load and use them from the cache.
 \item
   There is a strong need in \href{https://trac.torproject.org/projects/tor/ticket/14310}{a standard on anonymized browser behaviour}.
 \item
   Disabling JS is incompatible with highly commercialised the Web of today.\\
-  Business is business, if for making money (or not prosecuting and changing high ranked managers) it was necessary to collaborate with intelligence and law enforcement agencies, enlist itself into non secret or secret \href{http://97-fz.rkn.gov.ru/}{registry}, track users, analyse their actions and spread malware, this would be done.\\
+  Business is business, if for making money (or not prosecuting and changing high ranked managers) it was necessary to collaborate with intelligence and law enforcement agencies, enlist itself into non secret or secret \href{https://97-fz.rkn.gov.ru/}{registry}, track users, analyse their actions and spread malware, this would be done. Pecunia non olet.\\
   Some sites were intentionally made non-functional without JS, some of them have a note that they won't work without JS (but sometimes you can bypass it).\\
   \textbf{The conclusion:} it seems that sites owner won't implement work without JS because it contradicts their interests.
+  UPD: There were the \href{https://www.vedomosti.ru/finance/articles/2018/06/21/773389-banki-proveryat-ustroistva}{news (though I haven't managed to find CB official document)} that the Central Bank of Russian Federation have mandated other Russian banks to do "analyze special and unique settings and parameters of devices" and take special attention to the clients having the same device fingerprints.
 \end{itemize}
 
 \section{Additional materials}\label{additional-materials}
@@ -252,11 +301,11 @@ One of solutions is to use the same cache for all the sites, which is dropped in
 \item
   \href{https://www.torproject.org/projects/torbrowser/design/\#fingerprinting-defenses}{Fingerprinting defenses in the Tor Browser}
 \item
-  \href{https://github.com/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting}{PoC and the repo of this article}
+  \href{https://gitlab.com/KOLANICH1/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting}{PoC and the repo of this article}
 \item
-  \href{https://www.sharelatex.com/github/repos/KOLANICH/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting}{Copy of this article on Share\LaTeX}
+  \href{https://gitlab.com/KOLANICH1/Article-2015-Dull-captaincy-or-the-way-Tor-Project-fights-browser-fingerprinting/-/jobs/artifacts/master/raw/readme.en.pdf?job=build}{Copy of this article on GitLab.com as a build artifact}
 \item
-  \href{http://jsfiddle.net/fyw4qmdg/5/}{The fiddle}
+  \href{https://jsfiddle.net/fyw4qmdg/5/}{The fiddle}
 \end{enumerate}
 
 \nocite{*}
@@ -270,7 +319,7 @@ One of solutions is to use the same cache for all the sites, which is dropped in
   Added the link to the fiddle.
 \item
   Added the fingerprints for Whonyx and Firefox on android and the
-  results by \href{https://geektimes.ru/users/starius/}{@starius}.
+  results by \href{https://habr.com/users/starius/}{@starius}.
 \item
   Added the links to the articles and ``In The Wild'' chapter
 \item
@@ -279,9 +328,19 @@ One of solutions is to use the same cache for all the sites, which is dropped in
    Discovered the paper\cite{Fifield2015} on the same topic with analysis of entropy of characters and fonts.
 \item
    Added info about mathid id.js and the \href{https://trac.torproject.org/projects/tor/ticket/13400#comment:12}{requested} fingerprints. Fixed the bibliography.
+\item \begin{enumerate}
+   \item Fixed working on updated browsers;
+   \item removed now irrelevant notes about compatibility since now it is fixed;
+   \item added Fira Code and Fira Mono to the list of fonts to fingerprint;
+   \item added several fingerprints;
+   \item added some analytics;
+   \item replaced http:// with https://
+   \item now building with \XeTeX;
+   \item migrated to GitLab.com following aquisition of GitHub by Microsoft;
+   \item added GitLab CI and links to it;
+   \item improved and refactored fingerprinter code, disabled 10 passes for the browsers they are useless for;
+   \end{enumerate}
 \end{enumerate}
-
-
 {\footnotesize}
 \appendix
 \end{document}

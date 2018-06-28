@@ -1,0 +1,54 @@
+{
+	"serif" : {
+		"d" : "bee0d15882dc59b5ea486ed7",
+		"fonts" : []
+	},
+	"sans-serif" : {
+		"d" : "62298c261e19d6ce1453033d",
+		"fonts" : []
+	},
+	"monospace" : {
+		"d" : "c7f38a331a91b535f4a2a9a2",
+		"fonts" : [
+			"Times New Roman",
+			"Arial",
+			"Impact",
+			"Courier New",
+			"Bookman Old Style",
+			"Consolas",
+			"MS Gothic",
+			"Constantia",
+			"Segoe UI",
+			"Verdana",
+			"Meiryo",
+			"Meiryo UI",
+			"Calibri",
+			"Cambria",
+			"Cambria Math",
+			"Tahoma",
+			"Arimo",
+			"Cousine",
+			"Noto Emoji",
+			"Noto Sans",
+			"Noto Serif",
+			"STIX Math",
+			"Tinos",
+			"Wingdings",
+			"Webdings",
+			"Symbol",
+			"Ubuntu Mono",
+			"Droid Sans",
+			"DejaVu Sans",
+			"Inconsolata",
+			"Inconsolata LGC",
+			"Source Code Pro",
+			"Hack",
+			"Lucida Console",
+			"Lucida Handwriting",
+			"Georgia",
+			"San Francisco",
+			"System",
+			"vgaoem"
+		]
+	}
+}
